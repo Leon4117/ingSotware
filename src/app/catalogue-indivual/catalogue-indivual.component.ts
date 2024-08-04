@@ -23,7 +23,7 @@ export class CatalogueIndivualComponent {
   carrito: any;
   constructor(private _route: ActivatedRoute,private http:HttpClient){
     this.dato = this._route.snapshot.paramMap.get('id')
-    let url="http://127.0.0.1:8000/product/"+this.dato;
+    let url="https://lightyellow-gaur-319608.hostingersite.com:8000/product/"+this.dato;
     this.http.get(url).subscribe(data=>{
       this.dato=data
     })

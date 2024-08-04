@@ -37,7 +37,7 @@ export class CompraComponent {
   constructor(private productos:HttpClient){
     this.carrito = JSON.parse(localStorage.getItem('carrito') || '{}');
 
-    productos.get('http://127.0.0.1:8000/product').subscribe(data => {
+    productos.get('https://lightyellow-gaur-319608.hostingersite.com:8000/product').subscribe(data => {
       this.Produc=data
       //this.newVal=$('#newVal').val();
       this.oldVal=$('#cambio').val();

@@ -25,7 +25,7 @@ export class MainIndexComponent {
   dato3:any;
   dato4:any;
   constructor(private productos:HttpClient,private _route: ActivatedRoute,private http:HttpClient){
-    productos.get('http://127.0.0.1:8000/product').subscribe(data => {
+    productos.get('https://lightyellow-gaur-319608.hostingersite.com:8000/product').subscribe(data => {
       this.proi=data
       console.log(this.proi)
       this.prospe = 1;
@@ -33,7 +33,7 @@ export class MainIndexComponent {
 
     console.log(this._route.snapshot.paramMap.get('id'))
     this.dato = this._route.snapshot.paramMap.get('id')
-    let url="http://127.0.0.1:8000/product/"+1;
+    let url="https://lightyellow-gaur-319608.hostingersite.com:8000/product/"+1;
     this.http.get(url).subscribe(data=>{
       this.dato=data
     console.log(this.dato);
@@ -43,7 +43,7 @@ export class MainIndexComponent {
     //dato 2
 
     this.dato2 = this._route.snapshot.paramMap.get('id')
-    let url2="http://127.0.0.1:8000/product/"+2;
+    let url2="https://lightyellow-gaur-319608.hostingersite.com:8000/product/"+2;
     this.http.get(url2).subscribe(data=>{
       this.dato2=data
     console.log(this.dato2);
@@ -53,7 +53,7 @@ export class MainIndexComponent {
     //dato 3
 
     this.dato3 = this._route.snapshot.paramMap.get('id')
-    let url3="http://127.0.0.1:8000/product/"+3;
+    let url3="https://lightyellow-gaur-319608.hostingersite.com:8000/product/"+3;
     this.http.get(url2).subscribe(data=>{
       this.dato3=data
     console.log(this.dato3);

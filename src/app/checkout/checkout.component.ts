@@ -20,7 +20,7 @@ declare var $:any;
 
 export class CheckoutComponent {
   name: any;
-  url: string = "http://127.0.0.1:8000/orders";
+  url: string = "https://lightyellow-gaur-319608.hostingersite.com:8000/orders";
   carrito:any;
   totales: any;
 

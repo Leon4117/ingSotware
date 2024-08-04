@@ -21,7 +21,7 @@ export class CatalogueComponent {
   nombrep: any
   constructor(private productos:HttpClient, private _router: ActivatedRoute){
     let data = _router.snapshot.paramMap.keys
-    productos.get('http://127.0.0.1:8000/product').subscribe(data => {
+    productos.get('https://lightyellow-gaur-319608.hostingersite.com:8000/product').subscribe(data => {
       this.nombrep=data
     })
   }
