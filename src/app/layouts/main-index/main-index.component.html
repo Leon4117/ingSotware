@@ -1,0 +1,142 @@
+<main class="main-wrapper">
+    <div class="axil-main-slider-area main-slider-style-1">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-sm-6" ngSkipHydration>
+                    <div class="main-slider-content">
+                        <div class="slider-content-activation-one">
+                            <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="400" data-sal-duration="800">
+                                <span class="subtitle"><i class="fas fa-fire"></i> Lo mas vendido de esta semana</span>
+                                <h1 class="title">{{dato.name}}</h1>
+                                <div class="slide-action">
+                                    <div class="shop-btn">
+                                        <a routerLink="/catalogue_individual/{{dato.id}}" onclick="setTimeout(() => {location.reload()}, 100)" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Compra ahora</a>
+                                    </div>
+                                    <div class="item-rating">
+                                        <div class="thumb">
+                                            <ul>
+                                                <li><img src="assets/images/others/author1.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author2.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author3.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author4.png" alt="Author"></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content">
+                                            <span class="rating-icon">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fal fa-star"></i>
+                                    </span>
+                                            <span class="review-text">
+                                        <span>100+</span> Reviews
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-slide slick-slide">
+                                <span class="subtitle"><i class="fas fa-fire"></i> Lo mas vendido de la semana</span>
+                                <h1 class="title">{{dato2.name}}</h1>
+                                <div class="slide-action">
+                                    <div class="shop-btn">
+                                        <a routerLink="/catalogue_individual/{{dato2.id}}" onclick="setTimeout(() => {location.reload()}, 100)" class="axil-btn btn-bg-white"><i class="fal fa-shopping-cart"></i>Compra ahora</a>
+                                    </div>
+                                    <div class="item-rating">
+                                        <div class="thumb">
+                                            <ul>
+                                                <li><img src="assets/images/others/author1.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author2.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author3.png" alt="Author"></li>
+                                                <li><img src="assets/images/others/author4.png" alt="Author"></li>
+                                            </ul>
+                                        </div>
+                                        <div class="content">
+                                            <span class="rating-icon">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fal fa-star"></i>
+                                    </span>
+                                            <span class="review-text">
+                                        <span>100+</span> Reviews
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 col-sm-6">
+                    <div class="main-slider-large-thumb">
+                        <div class="slider-thumb-activation-one axil-slick-dots">
+                            <div class="single-slide slick-slide" data-sal="slide-up" data-sal-delay="600" data-sal-duration="1500">
+                                <img src="assets/images/product/1.jpg" alt="Product">
+                                <div class="product-price">
+                                    <span class="text">desde</span>
+                                    <span class="price-amount">${{dato.price}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="shape-group">
+            <li class="shape-1"><img src="assets/images/others/shape-1.png" alt="Shape"></li>
+            <li class="shape-2"><img src="assets/images/others/shape-2.png" alt="Shape"></li>
+        </ul>
+    </div>
+
+    <!-- Start Expolre Product Area  -->
+    <div class="axil-product-area bg-color-white axil-section-gap">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="title-highlighter highlighter-primary"> <i class="fas fa-star"></i> Más vendidos</span>
+                <h2 class="title">Explora nuestros productos más vendidos</h2>
+            </div>
+            <div class="explore-product-activation slick-layout-wrapper slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
+                <div class="slick-single-layout">
+                    <div class="row row--15">
+                        <!-- End Single Product  -->
+                        @for (item of proi; track $index) {
+                        <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mb--30">
+                            <div class="axil-product product-style-one">
+                                <div class="thumbnail">
+                                    <a routerLink="/catalogue_individual/{{item.id}}" onclick="setTimeout(() => {location.reload()}, 100)">
+                                        <img data-sal="zoom-out" data-sal-delay="400" data-sal-duration="800" loading="lazy" src="assets/images/product/{{ item.id }}.jpg" alt="Product Images">
+                                    </a>
+                                    <div class="label-block label-right">
+                                        <div class="product-badget">Garantía</div>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <div class="inner">
+                                        <h5 class="title"><a routerLink="/catalogue_individual/{{item.id}}" onclick="setTimeout(() => {location.reload()}, 100)">{{item.name}}</a></h5>
+                                        <div class="product-price-variant">
+                                            <span class="price current-price">${{item.price}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      }
+                        <!-- End Single Product  -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center mt--20 mt_sm--0">
+                    <a routerLink="/catalogue" onclick="setTimeout(() => {location.reload()}, 100)" class="axil-btn btn-bg-lighter btn-load-more">Ver todos nuestros productos</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End Expolre Product Area  -->
+  </main>
+<router-outlet></router-outlet>

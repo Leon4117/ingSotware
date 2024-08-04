@@ -1,0 +1,64 @@
+<!-- <p>catalogue works!</p> -->
+<header-index></header-index>
+<main class="main-wrapper">
+    <!-- Start Breadcrumb Area  -->
+    <div class="axil-breadcrumb-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="inner">
+                        <ul class="axil-breadcrumb">
+                            <li class="axil-breadcrumb-item"><a href="index.html">Inicio</a></li>
+                            <li class="separator"></li>
+                            <li class="axil-breadcrumb-item active" aria-current="page">Mi cuenta</li>
+                        </ul>
+                        <h1 class="title">Explora todos nuestros productos</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="inner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Area  -->
+    <!-- Start Shop Area  -->
+    <div class="axil-shop-area axil-section-gap bg-color-white">
+        <div class="container">
+            <div class="row row--15">
+
+                <!-- End Single Product  -->
+                @for (item of nombrep; track $index) {
+                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                        <div class="axil-product product-style-one has-color-pick mt--40">
+                            <div class="thumbnail">
+                                <a (click)="senalid(item.id)" routerLink="/catalogue_individual/{{item.id}}">
+                                    <img (click)="senalid(item.id)" src="../../assets/images/product/{{ item.id }}.jpg" alt="Product Images">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <div class="inner">
+                                    <h5 class="title"><a (click)="senalid(item.id)">{{item.name}}</a></h5>
+                                    <div class="product-price-variant">
+                                        <span class="price current-price">${{item.price}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!-- End Single Product  -->
+            </div>
+        </div>
+        <!-- End .container -->
+    </div>
+    <!-- End Shop Area  -->
+</main>
+
+
+<footer-index></footer-index>
+<modal-view-product></modal-view-product>
+<header-search-modal></header-search-modal>
+<card-dropdown></card-dropdown>
+<offer-modal></offer-modal>

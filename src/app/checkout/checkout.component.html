@@ -1,0 +1,132 @@
+<!-- <p>checkout works!</p> -->
+<header-index></header-index>
+
+<style>
+  .ng-valid{
+    border: 1px solid #28a628 !important;
+    color: #28a628 !important;
+  }
+</style>
+
+<main class="main-wrapper">
+
+    <!-- Start Checkout Area  -->
+    <div class="axil-checkout-area axil-section-gap">
+        <div class="container">
+            <form id="form" [formGroup]="checkout">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="axil-checkout-billing">
+                            <h4 class="title mb--40">Detalles de envio</h4>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Nombre </label>
+                                        <input type="text" id="nombre" formControlName="customer_name" (click)="touch('nombre')" (change)="valida('nombre')">
+                                        @if ((nombre?.invalid) && nombre?.touched) {
+                                          <span>El nombre es inválido</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Apellido </label>
+                                        <input type="text" id="apellido" formControlName="customer_surname" (click)="touch('apellido')" (change)="valida('apellido')">
+                                        @if ((apellido?.invalid) && apellido?.touched) {
+                                          <span>El apellido es inválido</span>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefono </label>
+                                <input type="text" id="phone" formControlName="phone" minlength="10" maxlength="11" (click)="touch('phone')" (change)="validaTel('phone')">
+                                @if ((phone?.invalid) && phone?.touched) {
+                                  <span>El teléfono es inválido</span>
+                                }
+                            </div>
+                            <div class="form-group">
+                                <label>Correo Electronico</label>
+                                <input type="text" id="email" formControlName="email" (click)="touch('email')" (change)="valida('email')">
+                                @if ((email?.invalid) && email?.touched) {
+                                  <span>El correo electrónico es inválido</span>
+                                }
+                            </div>
+                            <div class="form-group">
+                              <label>Dirección </label>
+                              <input type="text" id="direccion1" placeholder="Direccion" formControlName="adress" (click)="touch('direccion1')" (change)="valida('direccion1')">
+                              <input type="text" id="direccion2" placeholder="Referencias(opcional)" formControlName="aditional">
+                              @if ((direccion?.invalid) && direccion?.touched) {
+                                <span>La dirección es inválida</span>
+                              }
+                            </div>
+                            <div class="form-group">
+                              <label>cuidad</label>
+                              <input type="text" id="ciudad" formControlName="city" (click)="touch('cuidad')" (change)="valida('cuidad')">
+                              @if ((city?.invalid) && city?.touched) {
+                                <span>La ciudad es inválida</span>
+                              }
+                            </div>
+                            <div class="form-group">
+                                <label>Pais / Region </label>
+                                <input type="text" id="pais" formControlName="country" (click)="touch('pais')" (change)="valida('pais')">
+                                @if ((country?.invalid) && country?.touched) {
+                                  <span>El país es inválido</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="axil-order-summery order-checkout-summery">
+                            <h5 class="title mb--20">Pedido</h5>
+                            <div class="summery-table-wrap">
+                                <table class="table summery-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Productos</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      @for (item of carrito; track $index) {
+                                        <tr class="order-product">
+                                            <td>{{ item.name }} <span class="quantity">x{{ item.quantity }}</span></td>
+                                            <td>${{ item.price*item.quantity }}</td>
+                                        </tr>
+                                      }
+                                      <tr class="order-subtotal">
+                                          <td>Subtotal</td>
+                                          <td><input id="sumaT" value="{{ totales.sub }}" style="width: 50%; color: #000; border: #000;">$</td>
+                                      </tr>
+                                      <tr class="order-iva">
+                                        <td>IVA</td>
+                                        <td><input id="iva" value="{{ totales.iva }}" style="width: 50%; color: #000; border: #000;">$</td>
+                                    </tr>
+                                      <tr class="order-total">
+                                          <td>Total</td>
+                                          <td class="order-total-amount"><input id="Total" value="{{ totales.total }}" style="width: 50%; color: black; border: #000;">$</td>
+
+                                      </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if (((nombre?.valid) && (apellido?.valid) && (phone?.valid)
+                            && (email?.valid) && (direccion?.valid) && (city?.valid) && (country?.valid))) {
+                                <button type="submit" (click)="guardaOrden()" class="axil-btn btn-bg-primary checkout-btn">Process to Checkout</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- End Checkout Area  -->
+
+</main>
+
+<footer-index></footer-index>
+<modal-view-product></modal-view-product>
+<header-search-modal></header-search-modal>
+<card-dropdown></card-dropdown>
+<offer-modal></offer-modal>

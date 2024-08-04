@@ -1,0 +1,112 @@
+<!-- <p>catalogue-indivual works!</p> -->
+<header-index></header-index>
+<main class="main-wrapper">
+    <!-- Start Shop Area  -->
+
+
+    <div class="axil-single-product-area axil-section-gap pb--0 bg-color-white">
+
+        <div class="single-product-thumb mb--40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7 mb--40">
+                        <div class="row">
+                            <div class="col-lg-10 order-lg-2">
+                                <div class="single-product-thumbnail-wrap zoom-gallery">
+                                    <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
+                                        <div class="thumbnail">
+                                          <img src="../../assets/images/product/{{ dato.id }}.jpg" alt="Product Images">
+                                        </div>
+                                    </div>
+                                    <div class="label-block">
+                                        <div class="product-badget">Garantia</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mb--40">
+                        <div class="single-product-content">
+                            <div class="inner">
+                                <h2 class="product-title">{{dato.name}}</h2>
+                                <input type="hidden" name="name" id="name" value="{{ dato.name }}">
+                                <span class="price-amount">{{dato.price}}</span>
+                                <input id="id" type="hidden" value="{{ dato.id}}">
+                                <input id="price" type="hidden" value="{{ dato.price}}">
+                                <div class="product-rating">
+                                    <div class="star-rating">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                    <div class="review-link">
+                                        <a href="#">(<span>3</span> Calificaciones)</a>
+                                    </div>
+                                </div>
+                                <ul class="product-meta">
+                                    <li><i class="fal fa-check"></i>Disponible</li>
+                                </ul>
+                                <h2 class="product-title">{{dato.description}}</h2>
+                                <div class="product-variations-wrapper">
+                                </div>
+
+                                <!-- Start Product Action Wrapper  -->
+                                <div class="product-action-wrapper d-flex-center">
+
+                                    <!-- Start Product Action  -->
+                                    <ul class="product-action d-flex-center mb--0">
+                                        <li class="add-to-cart" id="des"><a onclick="
+                                          var carrito = {
+                                            id: parseInt($('#id').val()),
+                                            price: parseFloat($('#price').val()),
+                                            name: $('#name').val(),
+                                            quantity: 1
+                                          }
+                                          if(JSON.parse(localStorage.getItem('carrito')) == null){
+                                            var carrito = [{
+                                              id: parseInt($('#id').val()),
+                                              price: parseFloat($('#price').val()),
+                                              name: $('#name').val(),
+                                              quantity: 1
+                                            }]
+                                            localStorage.setItem('carrito', JSON.stringify(carrito))
+                                          }else{
+                                            var cart = JSON.parse(localStorage.getItem('carrito'))
+                                            if(Array.isArray(cart)){
+                                              cart.push(carrito)
+                                            }else{
+                                              var array = Object.entries(cart)
+                                              array.push(carrito)
+                                            }
+
+                                            localStorage.clear()
+                                            localStorage.setItem('carrito', JSON.stringify(cart))
+                                          }
+                                          alert('Producto agregado al carrito exitosamente');
+                                          $('#des').hide()
+                                          $('#mos').show()
+                                            " class="axil-btn btn-bg-primary">Agregar al carrito</a></li>
+                                        <li style="display: none; font-size: larger;" id="mos"><i class="fal fa-check"></i> Producto agregado al carrito</li>
+                                    </ul>
+                                    <!-- End Product Action  -->
+
+                                </div>
+                                <!-- End Product Action Wrapper  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Shop Area  -->
+</main>
+
+<footer-index></footer-index>
+<modal-view-product></modal-view-product>
+<header-search-modal></header-search-modal>
+<card-dropdown></card-dropdown>
+<offer-modal></offer-modal>

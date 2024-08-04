@@ -1,0 +1,174 @@
+<!-- <p>compra works!</p> -->
+<header-index></header-index>
+<main class="main-wrapper">
+
+    <!-- Start Cart Area  -->
+    <div class="axil-product-cart-area axil-section-gap">
+        <div class="container">
+            <div class="axil-product-cart-wrap">
+                <div class="product-table-heading">
+                    <h4 class="title">Tu carrito</h4>
+                </div>
+                <a onclick="localStorage.clear(); setTimeout(()=>{location.reload()},1000)" class="axil-btn btn-bg-secondary checkout-btn">Vaciar Carrito</a> <br>
+                <div class="table-responsive">
+                    <table class="table axil-product-table axil-cart-table mb--40">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="product-remove"></th>
+                                <th scope="col" class="product-thumbnail">Producto</th>
+                                <th scope="col" class="product-title"></th>
+                                <th scope="col" class="product-price">Precio</th>
+                                <th scope="col" class="product-quantity">Cantidad</th>
+                                <th scope="col" class="product-subtotal">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of carrito; track $index) {
+                                <tr id="product-{{item.id}}">
+                                    <input type="hidden" value="{{item.id}}" id="ids">
+                                    <td class="product-remove"><a id="a-{{ item.id }}" onclick="
+                                    var cart = JSON.parse(localStorage.getItem('carrito'))
+                                    var id = parseInt(this.id.split('-')[1])
+                                    cart.forEach(function(item, index, object) {
+                                      if(item.id == id){
+                                        object.splice(index, 1);
+                                        $('#product-'+id).remove();
+                                      }
+                                    });
+                                    if(cart.length == 0){
+                                      localStorage.clear()
+                                    }else{
+                                      localStorage.clear()
+                                      localStorage.setItem('carrito',JSON.stringify(cart))
+                                    }
+                                    " class="remove-wishlist"><i class="fal fa-times"></i></a></td>
+                                    <td class="product-thumbnail"><a routerLink="/catalogue_individual/{{item.id}}"><img src="./assets/images/product/{{ item.id }}.jpg" alt="Digital Product"></a></td>
+                                    <td class="product-title"><a routerLink="/catalogue_individual/{{item.id}}">{{item.name}}</a></td>
+                                    <td class="product-price" data-title="Price"><span class="currency-symbol"><input type="hidden" id="{{item.id}}">$</span>{{item.price}}</td>
+                                    <td class="product-quantity" data-title="Qty">
+                                        <div class="pro-qty">
+                                          <span class="dec qtybtn" (click)="precio()" onclick="
+                                                var $button = $(this);
+                                                var total = 0;
+                                                var oldValue = $button.parent().find('input').val();
+                                                var id = $button.parent().find('input').attr('class').split(' ')[0].split('-')[1];
+                                                var max = parseFloat($('#newVal'+id).val());
+                                                var conteo = parseFloat($('#canti'+ id).val());
+                                                var subtota1 = subtota1;
+                                                var subtota2 = subtota2;
+                                                var subtota3 = subtota3;
+                                                if ($button.hasClass('inc')) {
+                                                    if (oldValue < max) {
+                                                        var newVal = parseFloat(oldValue) + 1;
+                                                    } else {
+                                                        newVal = max;
+                                                    }
+                                                } else {
+                                                    // Don't allow decrementing below zero
+                                                    if (oldValue > 0) {
+                                                        var newVal = parseFloat(oldValue) - 1;
+                                                    } else {
+                                                        newVal = 0;
+                                                    }
+
+                                                }
+                                                $button.parent().find('input').val(newVal);
+
+                                                //operacion de multiplicacion para subtotal
+                                                var subtota1 = newVal*conteo;
+                                                var subtota2 = 0;
+                                                var subtota3 = newVal*conteo;
+                                                //te traes el valor del price y newval
+                                                $('#subtotales'+id).val(subtota1);
+                                            ">-</span>
+                                            <input type="number" class="quantity-input data-{{item.id}}" value="1" name="qty" id="cambio{{item.id}}" readonly>
+                                          <span class="inc qtybtn" (click)="precio()" onclick="
+                                              var $button = $(this);
+                                              var total = 0;
+                                              var oldValue = $button.parent().find('input').val();
+                                              var id = $button.parent().find('input').attr('class').split(' ')[0].split('-')[1];
+                                              var max = parseFloat($('#newVal'+id).val());
+                                              var conteo = parseFloat($('#canti'+ id).val());
+                                              var subtota1 = subtota1;
+                                              var subtota2 = subtota2;
+                                              var subtota3 = subtota3;
+                                              if ($button.hasClass('inc')) {
+                                                  if (oldValue < max) {
+                                                      var newVal = parseFloat(oldValue) + 1;
+                                                  } else {
+                                                      newVal = max;
+                                                  }
+
+                                                  //var newVal = parseFloat(oldValue) + 1;
+                                              } else {
+                                                  // Don't allow decrementing below zero
+                                                  if (oldValue > 0) {
+                                                      var newVal = parseFloat(oldValue) - 1;
+                                                  } else {
+                                                      newVal = 0;
+                                                  }
+
+                                              }
+                                              $button.parent().find('input').val(newVal);
+
+                                              //operacion de multiplicacion para subtotal
+                                              var subtota1 = newVal*conteo;
+                                              var subtota2 = 0;
+                                              var subtota3 = newVal*conteo;
+                                              //te traes el valor del price y newval
+                                              $('#subtotales'+id).val(subtota1);
+                                          ">+</span>
+                                        </div>
+                                        <input type="hidden" value="{{item.existence_qty}}" id="newVal{{item.id}}">
+                                    </td>
+                                    <td class="product-subtotal" data-title="Subtotal"><span class="currency-symbol">$</span><input style="width : 4px" type="hidden" id="canti{{item.id}}" value="{{item.price}}"><input type="number" value="{{ item.price }}" id="subtotales{{item.id}}" readonly></td>
+                                </tr>
+                            }@empty {
+                              <tr>
+                                No hay productos en el carrito
+                              </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
+                        <div class="axil-order-summery mt--80">
+                            <h5 class="title mb--20">Orden de pago</h5>
+                            <div class="summery-table-wrap">
+                                <table class="table summery-table mb--30">
+                                    <tbody>
+                                        <tr class="order-subtotal">
+                                            <td>Subtotal</td>
+                                            <td>$<input type="text" value="0" id="sumaT"></td>
+                                        </tr>
+                                        <tr class="order-tax">
+                                            <td>IVA</td>
+                                            <td>$<input type="text" value="0" id="iva"></td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <td>Total</td>
+                                            <td class="order-total-amount">$<input type="text" value="0" id="Total"></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            @if (total != 0) {
+                              <a routerLink="/checkout" onclick="setTimeout(()=>{location.reload()},1000)" class="axil-btn btn-bg-primary checkout-btn">Datos de envio</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart Area  -->
+
+</main>
+
+<footer-index></footer-index>
+<modal-view-product></modal-view-product>
+<header-search-modal></header-search-modal>
+<card-dropdown></card-dropdown>
+<offer-modal></offer-modal>
